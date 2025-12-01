@@ -17,4 +17,16 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
 	echo "Wordpress has been successfully installed!"
 fi
 
+if [ $BONUS = "true" ]; then
+	wp plugin install redis-cache --activate
+	wp config set WP_REDIS_HOST redis
+	wp config set WP_REDIS_PORT 6379
+	wp redis enable
+fi
+
+# Activation du Debug
+# wp config set WP_DEBUG true --raw
+# wp config set WP_DEBUG_LOG true --raw
+# wp config set WP_DEBUG_DISPLAY true --raw
+
 exec /usr/sbin/php-fpm82 -F
