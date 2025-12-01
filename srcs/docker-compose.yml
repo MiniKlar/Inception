@@ -37,6 +37,61 @@ services:
     networks:
       - inception
     restart: always
+  redis:
+    container_name: redis
+    profiles:
+      - bonus
+    build: ./requirements/bonus/redis/
+    ports:
+      - "6379:6379"
+    networks:
+      - inception
+    restart: always
+  vsftpd:
+    container_name: vsftpd
+    profiles:
+      - bonus
+    build: ./requirements/bonus/vsftpd/
+    env_file:
+      - .env
+    ports:
+      - "21:21"
+      - "21100-21110:21100-21110"
+    volumes:
+      - wordpress_data:/wordpress
+    networks:
+      - inception
+    restart: always
+  website:
+    container_name: website
+    profiles:
+      - bonus
+    build: ./requirements/bonus/website/
+    networks:
+      - inception
+    restart: always
+  portainer:
+    container_name: portainer
+    profiles:
+      - bonus
+    build: ./requirements/bonus/portainer/
+    ports:
+      - "9001:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - inception
+    restart: always
+  adminer:
+    container_name: adminer
+    profiles:
+      - bonus
+    build: ./requirements/bonus/adminer
+    ports:
+      - "8080:8080"
+    networks:
+      - inception
+    restart: always
 
 networks:
   inception:
