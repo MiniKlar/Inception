@@ -1,7 +1,7 @@
 FROM	alpine:3.22
 
 RUN		apk update && apk add icu pcre openssl imagemagick php82 php82-fpm php82-mysqli php82-curl php82-dom php82-exif php82-fileinfo php82-pecl-imagick php82-pecl-igbinary \
-		php82-intl php82-mbstring php82-openssl php82-xml php82-zip php82-pecl-apcu php82-pecl-memcached libmemcached php82-opcache php82-pecl-redis php82-phar
+		php82-intl php82-mbstring php82-openssl php82-xml php82-zip php82-pecl-apcu php82-pecl-memcached libmemcached php82-opcache php82-pecl-redis php82-phar php82-tokenizer php82-ctype
 
 RUN		echo "memory_limit = 512M" > /etc/php82/conf.d/memory-limit.ini
 
