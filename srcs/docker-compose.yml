@@ -4,6 +4,8 @@ services:
     build: ./requirements/nginx/
     depends_on:
       - wordpress
+    env_file:
+      - .env
     volumes:
       - wordpress_data:/var/www/html
     ports:
