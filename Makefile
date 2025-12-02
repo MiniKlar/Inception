@@ -13,7 +13,7 @@
 # --- Configuration ---
 NAME		= inception
 SRCS_DIR	= ./srcs
-COMPOSE		= docker-compose -f $(SRCS_DIR)/docker-compose.yml
+COMPOSE		= docker compose -f $(SRCS_DIR)/docker-compose.yml
 ENV_FILE	= $(SRCS_DIR)/.env
 DATA_DIR	= /home/lomont/data
 
@@ -60,8 +60,8 @@ bonus: setup_dirs set_bonus_true
 	@$(COMPOSE) --profile bonus up -d --remove-orphans
 	@echo "$(GREEN)✅ Inception (Bonus) is up and running!$(RESET)"
 	@echo "$(CYAN)🌐 Website: https://lomont.42.fr$(RESET)"
-	@echo "$(CYAN)📊 Adminer: https://lomont.42.fr/adminer$(RESET)"
-	@echo "$(CYAN)🐳 Portainer: https://lomont.42.fr:9443$(RESET)"
+	@echo "$(CYAN)📊 Adminer: http://lomont.42.fr/8080"
+	@echo "$(CYAN)🐳 Portainer: http://lomont.42.fr:9001$(RESET)"
 	@echo "$(CYAN)🌐 Static Site: https://lomont.42.fr/website$(RESET)"
 
 # ------------------------------------------------------------------------------
@@ -88,7 +88,7 @@ setup_dirs:
 # ------------------------------------------------------------------------------
 down:
 	@echo "\n$(YELLOW)🛑 Stopping containers...$(RESET)"
-	@$(COMPOSE) down
+	@$(COMPOSE) --profile bonus down
 	@echo "$(GREEN)✅ Containers stopped.$(RESET)"
 
 clean: down
