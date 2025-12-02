@@ -3,6 +3,13 @@
 CERT_FILE="/etc/nginx/ssl/inception.crt"
 KEY_FILE="/etc/nginx/ssl/inception.key"
 
+if [ $BONUS = "true" ]; then
+	rm -rf /etc/nginx/http.d/lomont.42.fr.conf
+	mv /etc/nginx/http.d/lomont.42.fr_bonus.conf /etc/nginx/http.d/lomont.42.fr.conf
+else
+	rm -rf /etc/nginx/http.d/lomont.42.fr_bonus.conf
+fi
+
 if [ ! -f $CERT_FILE ]; then
 	echo "Certificate doesn't exist, generating a SSL certification..."
 
